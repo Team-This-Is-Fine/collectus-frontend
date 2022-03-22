@@ -18,3 +18,7 @@ app.use('api/collections', collectionController);
 
 const itemController = require('./controllers/itemController');
 app.use('api/items', itemController);
+
+app.listen(app.get('port'), () => {
+	console.log(`✅ PORT: ${app.get('port')} 🌟`);
+});
