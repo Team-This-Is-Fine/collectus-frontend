@@ -1,7 +1,7 @@
 import CollectionList from '../collectionList/CollectionList';
 import { CollectionsContext } from '../../CollectionsContext';
 import axios from 'axios';
-import React, { useState, useEffect, useDebugValue } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
 	const [collections, setCollections] = useState([]);
