@@ -1,13 +1,17 @@
 import CollectionItem from '../collectionItem/CollectionItem';
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-export default function CollectionList() {
+export default function CollectionList({ collections })
+{
 	return (
 		<div>
-			<>Collection List loaded</>
+			<p>Collection List loaded</p>
 
-			<CollectionItem />
+			{collections.map((collectionItem) =>
+			{
+				return <CollectionItem collectionItem={collectionItem} />;
+			})}
+
 		</div>
 	);
 }
