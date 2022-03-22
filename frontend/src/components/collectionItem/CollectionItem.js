@@ -1,10 +1,14 @@
-import ItemList from '../itemList/ItemList';
-
-export default function CollectionItem() {
+export default function CollectionItem({ collectionItem }) {
 	return (
-		<>
-			<>Collection item loaded </>;
-			<ItemList />
-		</>
+		<div>
+			<h2>{collectionItem.name}</h2>
+			<img
+				// needs ternary.
+				src={collectionItem.img}
+				alt={collectionItem.name}
+			/>
+			<p>{collectionItem.description}</p>
+			<p>{collectionItem.amount}</p>
+		</div>
 	);
 }

@@ -1,13 +1,13 @@
-import CollectionItem from '../collectionItem/CollectionItem';
+import ItemItem from '../ItemItem/ItemItem';
 
-
-export default function CollectionList()
-{
+export default function ItemList({ Items }) {
 	return (
 		<div>
-			<>Collection List loaded</>
+			<p>Item List loaded</p>
 
-			<CollectionItem />
+			{Items.map((ItemItem) => {
+				return <ItemItem ItemItem={ItemItem} />;
+			})}
 		</div>
 	);
 }
