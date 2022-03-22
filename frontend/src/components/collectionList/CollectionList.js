@@ -1,13 +1,13 @@
-import CollectionItem from '../collectionItem/CollectionItem';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import ItemItem from '../ItemItem/ItemItem';
 
-export default function CollectionList() {
+export default function ItemList({ Items }) {
 	return (
 		<div>
-			<>Collection List loaded</>
+			<p>Item List loaded</p>
 
-			<CollectionItem />
+			{Items.map((ItemItem) => {
+				return <ItemItem ItemItem={ItemItem} />;
+			})}
 		</div>
 	);
 }

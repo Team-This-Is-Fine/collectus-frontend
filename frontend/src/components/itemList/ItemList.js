@@ -1,10 +1,13 @@
 import Item from '../item/Item';
 
-export default function ItemList() {
+export default function ItemList({ itemList }) {
 	return (
-		<>
+		<div>
 			<>item list loaded</>
-			<Item />
-		</>
+
+			{itemList.map((item) => {
+				return <Item item={item} />;
+			})}
+		</div>
 	);
 }
