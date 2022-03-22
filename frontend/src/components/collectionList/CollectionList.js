@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 export default function CollectionList() {
+	const [collections, setCollections] = useState([]);
+
 	return (
 		<div>
 			<>Collection List loaded</>
