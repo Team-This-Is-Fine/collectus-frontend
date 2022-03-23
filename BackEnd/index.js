@@ -8,15 +8,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  return res.redirect("api/collections");
+  return res.redirect("/api/items");
 });
 
 const collectionController = require("./controllers/collectionController");
-app.use("api/collections", collectionController);
+app.use("/api/collections", collectionController);
 
 const itemController = require("./controllers/itemController");
-app.use("api/items", itemController);
+app.use("/api/items", itemController);
 
 app.listen(app.get("port"), () => {
-  console.log(`:white_check_mark: PORT: ${app.get("port")} :star2:`);
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });

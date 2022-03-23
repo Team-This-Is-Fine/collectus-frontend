@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Yugioh cards", 
+        "img": "https://m.media-amazon.com/images/I/81tEHrcSIUL._AC_SL1500_.jpg",
+        "collectionSize": 200
+    },
+
+    {
+        "name": "synths", 
+        "img": "https://factmag-images.s3.amazonaws.com/wp-content/uploads/2014/02/synths-9.6.2016.jpg",
+        "collectionSize": 8
+    }
+]
