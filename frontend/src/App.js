@@ -1,5 +1,5 @@
 import './App.css';
-import ItemList from './components/ItemList/ItemList';
+import ItemList from './components/itemList/ItemList';
 import Home from './components/home/Home';
 import { Routes, Route, Link } from 'react-router-dom';
 

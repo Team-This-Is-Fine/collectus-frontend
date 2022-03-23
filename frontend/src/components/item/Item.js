@@ -7,7 +7,7 @@ export default function Item({ item }) {
 				src={item.img}
 				alt={item.name}
 			/>
-			<p>{Item.description}</p>
+			<p>{item.description}</p>
 			<p>{item.duplicated}</p>
 		</div>
 	);
