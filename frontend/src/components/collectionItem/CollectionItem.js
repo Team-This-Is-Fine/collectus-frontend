@@ -4,7 +4,7 @@ export default function CollectionItem({ collectionItem })
 {
 	return (
 		<Carousel style={{ minHeight: "25vh" }}>
-			{collectionItem.map((item, index) =>
+			{collectionItem.item.map((item, index) =>
 			{
 				return (
 					<Carousel.Item key={index} style={{ maxHeight: "25vh" }}>
