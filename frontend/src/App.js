@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './components/home/Home';
+import Item from './components/item/Item';
 import { Routes, Route, Link } from 'react-router-dom';
 
 function App()
@@ -14,6 +15,7 @@ function App()
 			</header>
 			<Routes>
 				<Route path='/home' element={<Home />} />
+				<Route path='/items' elements={<Item />} />
 			</Routes>
 		</>
 	);
