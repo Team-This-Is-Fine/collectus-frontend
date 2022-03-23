@@ -1,19 +1,19 @@
 import './App.css';
-import ItemList from './components/itemList/ItemList';
 import Home from './components/home/Home';
 import { Routes, Route, Link } from 'react-router-dom';
 
-function App() {
+function App()
+{
 	return (
 		<>
 			<header>
 				<h1>Collectus</h1>
 				<nav>
-					<Link to='/'>Home</Link>
+					<Link to='/home'>Home</Link>
 				</nav>
 			</header>
 			<Routes>
-				<Route path='/' element={<Home />} />
+				<Route path='/home' element={<Home />} />
 			</Routes>
 		</>
 	);
