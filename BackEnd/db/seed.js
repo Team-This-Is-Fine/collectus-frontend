@@ -1,15 +1,15 @@
 const mongoose = require("./connection");
 const itemData = require("./itemData.json");
-const collectionData = require('./collectionData.json')
+const collectionData = require("./collectionData.json");
 const Item = require("../models/Item");
-const Collection = require('../models/Collection');
+const Collection = require("../models/Collection");
 
 Item.deleteMany({}).then(() => {
   Item.insertMany(itemData)
     .then((item) => {
       console.log("We have a collectable!!", itemData);
     })
-    .catch(console.error)
+    .catch(console.error);
 });
 
 Collection.deleteMany({}).then(() => {
