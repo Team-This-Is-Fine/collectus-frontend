@@ -11,18 +11,25 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/collections/:id", (req, res, next) => {
   const newItem = req.body;
-  const collectionId = newItem.collectionId;
-  Collection.findbyId(collectionId)
+  // const collectionId = newItem.collectionId;
+  Collection.findById(req.params.id)
     .then((collection) => {
       collection.item.push(newItem);
 
       return collection.save();
     })
-    .then((collection) => res.status(201).json({ collection: collection }))
+    .then((collection) => res.status(201).json(collection))
     .catch(next);
 });
+
+// router.post("/", (req, res) => {
+//   const newItem = req.body;
+//   Item.create(newItem).then((item) => {
+//     res.json(item);
+//   });
+// });
 
 router.get("/:id", async (req, res) => {
   try {
