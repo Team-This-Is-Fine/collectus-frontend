@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { Modal, ModalForm, Button } from "react-bootstrap";
+import { Modal, Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
-export default function ItemsForms() {
+export default function ItemsForms({ id }) {
+  const navigate = useNavigate();
   const [modalShow, setModalShow] = React.useState(false);
   const [itemCreate, setItemCreate] = useState({
     name: "",
@@ -19,6 +22,16 @@ export default function ItemsForms() {
     setModalShow(false);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios
+      .post(`http://localhost:8000/collections/${id}`, itemCreate)
+      .then((res) => {
+        navigate(`/collections/${id}`);
+      });
+  };
+
   return (
     <Modal
       show={modalShow}
@@ -27,17 +40,18 @@ export default function ItemsForms() {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Add Item</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <Form onSubmit={handleSubmit} className="create-item-form">
+          <label htmlFor="Name"> Name: </label>
+          <input
+            onChange={handleChange}
+            id="item"
+            value={itemCreate.name}
+            placeholder="Name"
+          />
+        </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleClose}>Close</Button>
