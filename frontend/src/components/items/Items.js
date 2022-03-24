@@ -1,9 +1,16 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+<<<<<<< HEAD
 import ItemsForm from "../ItemsForm/ItemsForm";
 import ItemsView from "../ItemsView/ItemsView";
 import { Button } from "react-bootstrap";
+=======
+import CollectionsForm from "../collectionsForm/CollectionsForm";
+import ItemsForm from "../itemsForm/ItemsForm";
+import ItemsView from "../itemsView/ItemsView";
+import CollectionsView from "../collectionsView/CollectionsView";
+>>>>>>> 91980cbec19a5586822b947a9652d8edc7e08b3f
 
 // Items in a collection.
 export default function Items() {
@@ -15,7 +22,7 @@ export default function Items() {
   // Handles axios call on mount.
   useEffect(() => {
     axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
-      console.log(res.data.items);
+      console.log(res.data.item);
       setItems([...res.data.item]);
     });
   }, []);
@@ -37,6 +44,7 @@ export default function Items() {
           showModal={showModal}
           items={items}
           setItems={setItems}
+          id ={id}
         />
       ) : (
         <>

@@ -32,9 +32,9 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(id);
     axios
-      .post(`http://localhost:8000/api/collections/${id}`, newItem)
+      .post(`http://localhost:8000/api/items/collections/${id}`, newItem)
       .then((res) => {
         setItems([...items, res]);
       })
@@ -43,7 +43,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
       });
 
     setShowModal(false);
-    navigate(`/collections/${id}`);
+    // navigate(`/collections/${id}`);
   }
 
   function handleClose() {
