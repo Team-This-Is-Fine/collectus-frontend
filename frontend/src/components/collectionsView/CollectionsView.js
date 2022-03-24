@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import './CollectionsView.css';
 
-export default function CollectionsView({ collections, handleCollectionClick })
+// Handles how collections are rendered.
+export default function CollectionsView({ collections })
 {
   return (
     <div className="card-container">
@@ -11,9 +12,9 @@ export default function CollectionsView({ collections, handleCollectionClick })
         {collections.map((element) =>
         {
           return (
-            <Col key={element.id} >
+            <Col key={element._id} >
               <Card
-                className='h-100' key={element.id}>
+                className='h-100'>
                 {element.img && (
                   <Card.Img
                     variant='top'
@@ -32,7 +33,6 @@ export default function CollectionsView({ collections, handleCollectionClick })
                 <Card.Footer>
                   <Link to={`/collections/${element._id}`}>
                     <Button
-                      // onClick={handleCollectionClick}
                       variant='outline-dark'>
                       View Collection
                     </Button>

@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import CollectionsView from '../collectionsView/CollectionsView';
 
+// Home page.
 export default function Collections()
 {
 	const [collections, setCollections] = useState([]);
 
+	// Handles axios call on mount.
 	useEffect(() =>
 	{
 		axios
@@ -16,16 +19,18 @@ export default function Collections()
 			});
 	}, []);
 
-	console.log(collections);
-
-	function handleCollectionClick(event)
+	// Handles no collections.
+	if (!collections.length)
 	{
-		console.log(event);
+		return "Loading";
 	}
 
 	return (
 		<div className='home-container'>
-			<CollectionsView collections={collections} handleCollectionClick={handleCollectionClick} />
+			<CollectionsView collections={collections} />
+			<Link to={`/collections/add-collection`}>
+				<button>Add Collection</button>
+			</Link>
 		</div>
 	);
 }
