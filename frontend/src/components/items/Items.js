@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import CollectionsForm from "../collectionsForm/CollectionsForm";
 import ItemsForm from "../ItemsForm/ItemsForm";
 import ItemsView from "../ItemsView/ItemsView";
-import CollectionsView from "../collectionsView/CollectionsView";
+import { Button } from "react-bootstrap";
 
 // Items in a collection.
 export default function Items() {
@@ -42,7 +41,7 @@ export default function Items() {
       ) : (
         <>
           <ItemsView items={items} id={id} />
-          <button onClick={handleOpen}>Add Item</button>
+          <Button onClick={handleOpen}>Add Item</Button>
         </>
       )}
     </div>
