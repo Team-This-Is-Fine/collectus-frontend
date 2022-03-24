@@ -1,7 +1,7 @@
-import { Modal, Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Modal, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CollectionsForm({ collections, setCollections, setShowModal })
 {
@@ -14,10 +14,9 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 	const [newCollection, setNewCollection] = useState(empty);
 	const navigate = useNavigate();
 
-	function handleNameChange(e)
-	{
-		setNewCollection({ ...newCollection, name: e.target.value });
-	}
+  function handleNameChange(e) {
+    setNewCollection({ ...newCollection, name: e.target.value });
+  }
 
 	function handleImageChange(e)
 	{
@@ -40,26 +39,27 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 		navigate("/collections");
 	}
 
-	function handleClose()
-	{
-		setShowModal(false);
-	}
 
-	return (
-		<Modal show={true}>
-			<Modal.Header>Add Collection</Modal.Header>
+  function handleClose() {
+    setShowModal(false);
+  }
 
-			<Modal.Body>
-				<Form onSubmit={handleSubmit}>
-					<Form.Group>
-						<Form.Label>name: </Form.Label>
-						<Form.Control
-							type='text'
-							onChange={handleNameChange}
-							value={newCollection.name}
-							required
-						/>
-					</Form.Group>
+  return (
+    <Modal show={true}>
+      <Modal.Header>Add Collection</Modal.Header>
+
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>name: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleNameChange}
+              value={newCollection.name}
+              required
+            />
+          </Form.Group>
+
 
 					<Form.Group>
 						<Form.Label>Image Url: </Form.Label>
@@ -74,11 +74,10 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 				</Form>
 			</Modal.Body>
 
-			<Modal.Footer>
 
-				<Button onClick={handleClose}>Close</Button>
-
-			</Modal.Footer>
-		</Modal>
-	);
+      <Modal.Footer>
+        <Button onClick={handleClose}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }
