@@ -33,7 +33,10 @@ export default function Collections()
 	return (
 		<div className='home-container'>
 			{showModal ? (
-				<CollectionsForm setShowModal={setShowModal} showModal={showModal} />
+				<CollectionsForm setShowModal={setShowModal}
+					showModal={showModal}
+					collections={collections}
+					setCollections={setCollections} />
 			) : (
 				<>
 					<CollectionsView collections={collections} />

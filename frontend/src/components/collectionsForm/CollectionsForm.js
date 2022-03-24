@@ -3,38 +3,36 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function CollectionsForm({ showModal, setShowModal })
+export default function CollectionsForm({ collections, setCollections, setShowModal })
 {
-	const [name, setname] = useState('');
-	const [imageUrl, setImageUrl] = useState('');
+	const [newCollection, setNewCollection] = useState(
+		{
+			name: "",
+			imageUrl: ""
+		}
+	);
+	// const [name, setname] = useState('');
+	// const [imageUrl, setImageUrl] = useState('');
 	const navigate = useNavigate();
 
 	function handleNameChange(e)
 	{
-		setname(e.target.value);
+		setNewCollection({ ...newCollection, name: e.target.value });
 	}
 
 	function handleImageChange(e)
 	{
-		setImageUrl(e.target.value);
+		setNewCollection({ ...newCollection, imageUrl: e.target.value });
 	}
 
 	function handleSubmit(e)
 	{
 		e.preventDefault();
 
-		const newCollection =
-		{
-			'name': { name },
-			'img': { imageUrl },
-			'item': [],
-			'collectionSize': this.item.length
-		};
-
 		axios.post('http://localhost:8000/api/collections/', newCollection)
-			.then((response) =>
+			.then((res) =>
 			{
-				console.log(response);
+				setCollections([...collections, res])
 				navigate("/collections");
 			})
 			.catch((error) =>
@@ -55,29 +53,32 @@ export default function CollectionsForm({ showModal, setShowModal })
 			<Modal.Header>Add Collection</Modal.Header>
 
 			<Modal.Body>
-				<Form.Group>
-					<Form.Label>name: </Form.Label>
-					<Form.Control
-						type='text'
-						onChange={handleNameChange}
-						value={name}
-						required
-					/>
-				</Form.Group>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group>
+						<Form.Label>name: </Form.Label>
+						<Form.Control
+							type='text'
+							onChange={handleNameChange}
+							value={newCollection.name}
+							required
+						/>
+					</Form.Group>
 
-				<Form.Group>
-					<Form.Label>Image Url: </Form.Label>
-					<Form.Control
-						type='text'
-						onChange={handleImageChange}
-						value={imageUrl}
-						className="collection-image"
-						required />
-				</Form.Group>
+					<Form.Group>
+						<Form.Label>Image Url: </Form.Label>
+						<Form.Control
+							type='text'
+							onChange={handleImageChange}
+							value={newCollection.imageUrl}
+							className="collection-image"
+							required />
+					</Form.Group>
+					<Button type="submit">Submit</Button>
+				</Form>
 			</Modal.Body>
 
 			<Modal.Footer>
-				<Button variant="primary" onClick={handleSubmit}>Submit</Button>
+
 				<Button onClick={handleClose}>Close</Button>
 
 			</Modal.Footer>
