@@ -19,7 +19,7 @@ function App()
 				<Route path='/collections' element={<Collections />} />
 				<Route path='/collections/add-collection' element={<CollectionsForm />} />
 				<Route path='/collections/:id' element={<Items />} />
-				<Route path='/items/add-item' element={<ItemsForm />} />
+				{/* <Route path='/items/add-item' element={<ItemsForm />} /> */}
 				{/* <Route path='/items/:id' element={<ItemsDetail />} /> */}
 			</Routes>
 		</div>
