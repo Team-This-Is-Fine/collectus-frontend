@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import CollectionsForm from "../collectionsForm/CollectionsForm";
-import ItemsForm from "../ItemsForm/ItemsForm";
-import ItemsView from "../ItemsView/ItemsView";
+import ItemsForm from "../itemsForm/ItemsForm";
+import ItemsView from "../itemsView/ItemsView";
 import CollectionsView from "../collectionsView/CollectionsView";
 
 // Items in a collection.
@@ -16,7 +16,7 @@ export default function Items() {
   // Handles axios call on mount.
   useEffect(() => {
     axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
-      console.log(res.data.items);
+      console.log(res.data.item);
       setItems([...res.data.item]);
     });
   }, []);
@@ -38,6 +38,7 @@ export default function Items() {
           showModal={showModal}
           items={items}
           setItems={setItems}
+          id ={id}
         />
       ) : (
         <>

@@ -32,11 +32,11 @@ router.put("/collections/:id", (req, res, next) =>
             item.set(itemData);
             return collection.save();
         }).then(() =>
-            res.sendStatus(204)).catch(next);
-    //     res.json(updatedDocument);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+            res.sendStatus(200)).catch(next); 
+//     res.json(updatedDocument);
+//   } catch (error) {
+//     console.log(error);
+//   }
 })
 
 router.delete("/collections/:id", (req, res, next) =>
