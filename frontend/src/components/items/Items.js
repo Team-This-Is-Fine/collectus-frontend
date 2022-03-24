@@ -16,7 +16,7 @@ export default function Items() {
   // Handles axios call on mount.
   useEffect(() => {
     axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
-      console.log(res.data.items);
+      console.log(res.data.item);
       setItems([...res.data.item]);
     });
   }, []);
@@ -38,6 +38,7 @@ export default function Items() {
           showModal={showModal}
           items={items}
           setItems={setItems}
+          id ={id}
         />
       ) : (
         <>
