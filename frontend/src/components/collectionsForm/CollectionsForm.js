@@ -10,7 +10,7 @@ export default function CollectionsForm({
 }) {
 	const [newCollection, setNewCollection] = useState({
 		name: '',
-		imageUrl: '',
+		img: '',
 	});
 	// const [name, setname] = useState('');
 	// const [imageUrl, setImageUrl] = useState('');
@@ -21,7 +21,7 @@ export default function CollectionsForm({
 	}
 
 	function handleImageChange(e) {
-		setNewCollection({ ...newCollection, imageUrl: e.target.value });
+		setNewCollection({ ...newCollection, img: e.target.value });
 	}
 
 	function handleSubmit(e) {
@@ -31,13 +31,13 @@ export default function CollectionsForm({
 			.post('http://localhost:8000/api/collections/', newCollection)
 			.then((res) => {
 				setCollections([...collections, res]);
-				navigate('/collections');
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 
 		setShowModal(false);
+		navigate('/collections');
 	}
 
 	function handleClose() {
@@ -65,7 +65,7 @@ export default function CollectionsForm({
 						<Form.Control
 							type='text'
 							onChange={handleImageChange}
-							value={newCollection.imageUrl}
+							value={newCollection.img}
 							className='collection-image'
 							required
 						/>

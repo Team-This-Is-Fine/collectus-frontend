@@ -4,13 +4,12 @@ import Items from './components/items/Items';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
-function App()
-{
+function App() {
 	return (
-		<div className="app-container">
+		<div className='app-container'>
 			<header>
 				<Link to='/collections'>
-					<Image src="http://tinyimg.io/i/fAUZtrg.png" alt="Logo" />
+					<Image src='http://tinyimg.io/i/fAUZtrg.png' alt='Logo' />
 				</Link>
 			</header>
 			<Routes>
