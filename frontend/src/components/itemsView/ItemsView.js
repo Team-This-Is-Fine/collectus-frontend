@@ -1,9 +1,9 @@
-import { Carousel, Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function Item({ collection })
+export default function ItemsView({ collectionItems })
 {
-	if (!collection)
+	if (!collectionItems)
 	{
 		return "";
 	}
@@ -11,34 +11,35 @@ export default function Item({ collection })
 	return (
 		<div className="card-container">
 			<Row xs={1} md={2} lg={3} xl={4} className='g-4' >
-				{collection.item.map((object) =>
+				{collectionItems.map((item) =>
 				{
 					return (
-						<Col key={object.id} >
+						<Col key={item.id} >
 							<Card
-								className='h-100' key={object.id}>
-								{object.img && (
+								className='h-100' key={item.id}>
+								{item.img && (
 									<Card.Img
 										variant='top'
-										src={object.img ? object.img : ''}
-										alt={object.name}
+										src={item.img ? item.img : ''}
+										alt={item.name}
 									/>
 								)}
 								<Card.Body>
-									{object.img ? (
+									{item.img ? (
 										''
 									) : (
 										<Card.Title>No Image Available</Card.Title>
 									)}
-									<Card.Text className='text-muted'>{object.name}</Card.Text>
+									<Card.Text className='text-muted'>{item.name}</Card.Text>
 								</Card.Body>
 								<Card.Footer>
-									<Link to={'/items'}>
-										<Button
-											variant='outline-dark'>
-											View Collection
-										</Button>
-									</Link>
+									{/* <Link to={'/items'}> */}
+									<Button
+
+										variant='outline-dark'>
+										View Collection
+									</Button>
+									{/* </Link> */}
 								</Card.Footer>
 							</Card>
 						</Col>
