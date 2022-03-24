@@ -1,14 +1,80 @@
-import { Modal, ModalForm } from 'react-bootstrap';
+import { Modal, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function ItemsForms()
-{
+export default function ItemsForm({ items, setItems, setShowModal }) {
+  const [newItem, setNewItem] = useState({
+    name: "",
+    img: "",
+    description: "",
+    duplicates: 0,
+  });
+  // const [name, setname] = useState('');
+  // const [imageUrl, setImageUrl] = useState('');
+  const navigate = useNavigate();
+
+  function handleNameChange(e) {
+    setNewItem({ ...newItem, name: e.target.value });
+  }
+
+  function handleImageChange(e) {
+    setNewItem({ ...newItem, img: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    axios
+      .post(`http://localhost:8000/api/collections/${id}`, newCollection)
+      .then((res) => {
+        setCollections([...collections, res]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setShowModal(false);
+    navigate("/collections");
+  }
+
+  function handleClose() {
+    setShowModal(false);
+  }
+
   return (
-    <Modal>
+    <Modal show={true}>
       <Modal.Header>Add Collection</Modal.Header>
-      <Modal.Body>Form Properties</Modal.Body>
+
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>name: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleNameChange}
+              value={newCollection.name}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Image Url: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleImageChange}
+              value={newCollection.img}
+              className="collection-image"
+              required
+            />
+          </Form.Group>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Modal.Body>
+
       <Modal.Footer>
-        {/* <Button onCLick={handleSubmit}>Submit</Button> */}
+        <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
     </Modal>
-  )
+  );
 }
