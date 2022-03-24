@@ -1,16 +1,48 @@
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export default function CollectionsForm({ showModal })
+export default function CollectionsForm({ showModal, setShowModal })
 {
 	const [name, setname] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
+	const navigate = useNavigate();
 
-	function handleChange(e)
+	function handleNameChange(e)
 	{
-		console.log(e);
-		console.log(e.target);
 		setname(e.target.value);
+	}
+
+	function handleImageChange(e)
+	{
+		setImageUrl(e.target.value);
+	}
+
+	function handleSubmit(e)
+	{
+		e.preventDefault();
+
+		const newCollection =
+		{
+			'name': { name },
+			'img': { imageUrl },
+			'item': [],
+			'collectionSize': this.item.length
+		};
+
+		axios.post('http://localhost:8000/api/collections/', newCollection)
+			.then((response) =>
+			{
+				console.log(response);
+				navigate("/collections");
+			})
+			.catch((error) =>
+			{
+				console.log(error);
+			})
+
+		setShowModal(false);
 	}
 
 	function handleClose()
@@ -18,10 +50,8 @@ export default function CollectionsForm({ showModal })
 		setShowModal(false);
 	}
 
-	// const handleClose = () => setShowModal(false);
-
 	return (
-		<Modal show={true} onHide={handleClose}>
+		<Modal show={true}>
 			<Modal.Header>Add Collection</Modal.Header>
 
 			<Modal.Body>
@@ -29,8 +59,9 @@ export default function CollectionsForm({ showModal })
 					<Form.Label>name: </Form.Label>
 					<Form.Control
 						type='text'
-						onChange={handleChange}
+						onChange={handleNameChange}
 						value={name}
+						required
 					/>
 				</Form.Group>
 
@@ -38,14 +69,17 @@ export default function CollectionsForm({ showModal })
 					<Form.Label>Image Url: </Form.Label>
 					<Form.Control
 						type='text'
-						onChange={handleChange}
+						onChange={handleImageChange}
 						value={imageUrl}
-						className="collection-image" />
+						className="collection-image"
+						required />
 				</Form.Group>
 			</Modal.Body>
 
 			<Modal.Footer>
-				<Button onClick={this.handleClose}>Close</Button>
+				<Button variant="primary" onClick={handleSubmit}>Submit</Button>
+				<Button onClick={handleClose}>Close</Button>
+
 			</Modal.Footer>
 		</Modal>
 	);
