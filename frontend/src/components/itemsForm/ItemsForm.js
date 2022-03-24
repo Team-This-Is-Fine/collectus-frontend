@@ -1,44 +1,77 @@
-import React from "react";
+import { Modal, Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import { Modal, ModalForm, Button } from "react-bootstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function ItemsForms() {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [itemCreate, setItemCreate] = useState({
+export default function ItemsForm({ items, setItems, setShowModal }) {
+  const [newItem, setNewItem] = useState({
     name: "",
     img: "",
     description: "",
-    duplicatates: 0,
+    duplicates: 0,
   });
+  // const [name, setname] = useState('');
+  // const [imageUrl, setImageUrl] = useState('');
+  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setItemCreate({ ...itemCreate, [event.target.id]: event.target.value });
-  };
+  function handleNameChange(e) {
+    setNewItem({ ...newItem, name: e.target.value });
+  }
 
-  const handleClose = () => {
-    setModalShow(false);
-  };
+  function handleImageChange(e) {
+    setNewItem({ ...newItem, img: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    axios
+      .post(`http://localhost:8000/api/collections/${id}`, newCollection)
+      .then((res) => {
+        setCollections([...collections, res]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setShowModal(false);
+    navigate("/collections");
+  }
+
+  function handleClose() {
+    setShowModal(false);
+  }
 
   return (
-    <Modal
-      show={modalShow}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
+    <Modal show={true}>
+      <Modal.Header>Add Collection</Modal.Header>
+
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>name: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleNameChange}
+              value={newCollection.name}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Image Url: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleImageChange}
+              value={newCollection.img}
+              className="collection-image"
+              required
+            />
+          </Form.Group>
+          <Button type="submit">Submit</Button>
+        </Form>
       </Modal.Body>
+
       <Modal.Footer>
         <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
