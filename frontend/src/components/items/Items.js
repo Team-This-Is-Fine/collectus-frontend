@@ -1,20 +1,23 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CollectionsForm from "../collectionsForm/CollectionsForm";
+import ItemsForm from "../ItemsForm/ItemsForm";
+import ItemsView from "../ItemsView/ItemsView";
 import CollectionsView from "../collectionsView/CollectionsView";
 
 // Items in a collection.
 export default function Items() {
   const { id } = useParams();
-  const [collectionItems, setCollectionItems] = useState([]);
+  // const [collectionItems, setCollectionItems] = useState([]);
   const [items, setItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   // Handles axios call on mount.
   useEffect(() => {
     axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
-      setCollections([...res.data]);
+      console.log(res.data.items);
+      setItems([...res.data.item]);
     });
   }, []);
 
@@ -30,7 +33,7 @@ export default function Items() {
   return (
     <div className="home-container">
       {showModal ? (
-        <CollectionsForm
+        <ItemsForm
           setShowModal={setShowModal}
           showModal={showModal}
           items={items}
@@ -38,8 +41,8 @@ export default function Items() {
         />
       ) : (
         <>
-          <CollectionsView items={items} />
-          <button onClick={handleOpen}>Add Collection</button>
+          <ItemsView items={items} id={id} />
+          <button onClick={handleOpen}>Add Item</button>
         </>
       )}
     </div>
