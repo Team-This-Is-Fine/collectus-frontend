@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function ItemsForm({ items, setItems, setShowModal }) {
+export default function ItemsForm({ id, items, setItems, setShowModal }) {
   const [newItem, setNewItem] = useState({
     name: "",
     img: "",
@@ -22,20 +22,24 @@ export default function ItemsForm({ items, setItems, setShowModal }) {
     setNewItem({ ...newItem, img: e.target.value });
   }
 
+  function handleDescriptionChange(e) {
+    setNewItem({ ...newItem, description: e.target.value });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/api/collections/${id}`, newCollection)
+      .post(`http://localhost:8000/api/collections/${id}`, newItem)
       .then((res) => {
-        setCollections([...collections, res]);
+        setItems([...items, res]);
       })
       .catch((error) => {
         console.log(error);
       });
 
     setShowModal(false);
-    navigate("/collections");
+    navigate(`/collections/${id}`);
   }
 
   function handleClose() {
@@ -44,16 +48,16 @@ export default function ItemsForm({ items, setItems, setShowModal }) {
 
   return (
     <Modal show={true}>
-      <Modal.Header>Add Collection</Modal.Header>
+      <Modal.Header>Add Item</Modal.Header>
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>name: </Form.Label>
+            <Form.Label>Name: </Form.Label>
             <Form.Control
               type="text"
               onChange={handleNameChange}
-              value={newCollection.name}
+              value={newItem.name}
               required
             />
           </Form.Group>
@@ -63,8 +67,28 @@ export default function ItemsForm({ items, setItems, setShowModal }) {
             <Form.Control
               type="text"
               onChange={handleImageChange}
-              value={newCollection.img}
+              value={newItem.img}
               className="collection-image"
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleImageChange}
+              value={newItem.description}
+              className="item-description"
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Duplicates</Form.Label>
+            <Form.Control
+              type="number"
+              onChange={handleImageChange}
+              value={newItem.duplicates}
+              className="item-duplicates"
               required
             />
           </Form.Group>
