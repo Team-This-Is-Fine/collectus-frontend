@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CollectionsForm({ collections, setCollections, setShowModal })
 {
-	const [newCollection, setNewCollection] = useState(
-		{
-			name: "",
-			imageUrl: ""
-		}
-	);
-	// const [name, setname] = useState('');
-	// const [imageUrl, setImageUrl] = useState('');
+	const empty =
+	{
+		name: "",
+		img: ""
+	}
+
+	const [newCollection, setNewCollection] = useState(empty);
 	const navigate = useNavigate();
 
 	function handleNameChange(e)
@@ -22,18 +21,15 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 
 	function handleImageChange(e)
 	{
-		setNewCollection({ ...newCollection, imageUrl: e.target.value });
+		setNewCollection({ ...newCollection, img: e.target.value });
 	}
 
 	function handleSubmit(e)
 	{
-		e.preventDefault();
-
 		axios.post('http://localhost:8000/api/collections/', newCollection)
 			.then((res) =>
 			{
 				setCollections([...collections, res])
-				navigate("/collections");
 			})
 			.catch((error) =>
 			{
@@ -41,6 +37,7 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 			})
 
 		setShowModal(false);
+		navigate("/collections");
 	}
 
 	function handleClose()
@@ -69,7 +66,7 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 						<Form.Control
 							type='text'
 							onChange={handleImageChange}
-							value={newCollection.imageUrl}
+							value={newCollection.img}
 							className="collection-image"
 							required />
 					</Form.Group>
