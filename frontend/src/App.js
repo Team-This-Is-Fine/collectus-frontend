@@ -1,6 +1,6 @@
 import "./App.css";
 import Collections from "./components/collections/Collections";
-import Items from "./components/items/items";
+import Items from "./components/items/Items";
 import { Routes, Route, Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
