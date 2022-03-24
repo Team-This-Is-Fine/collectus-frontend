@@ -1,12 +1,47 @@
-// export default function ItemsForms()
-// {
-//   return (
-//     <Modal>
-//       <Modal.Header>Add Collection</Modal.Header>
-//       <Modal.Body>Form Properties</Modal.Body>
-//       <Modal.Footer>
-//         {/* <Button onCLick={handleSubmit}>Submit</Button> */}
-//       </Modal.Footer>
-//     </Modal>
-//   )
-// }
+import React from "react";
+import { useState } from "react";
+import { Modal, ModalForm, Button } from "react-bootstrap";
+
+export default function ItemsForms() {
+  const [modalShow, setModalShow] = React.useState(false);
+  const [itemCreate, setItemCreate] = useState({
+    name: "",
+    img: "",
+    description: "",
+    duplicatates: 0,
+  });
+
+  const handleChange = (event) => {
+    setItemCreate({ ...itemCreate, [event.target.id]: event.target.value });
+  };
+
+  const handleClose = () => {
+    setModalShow(false);
+  };
+
+  return (
+    <Modal
+      show={modalShow}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Centered Modal</h4>
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={handleClose}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
