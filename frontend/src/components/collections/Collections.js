@@ -5,20 +5,29 @@ import CollectionsForm from '../collectionsForm/CollectionsForm';
 import CollectionsView from '../collectionsView/CollectionsView';
 
 // Home page.
-export default function Collections() {
+export default function Collections()
+{
 	const [collections, setCollections] = useState([]);
-	const [showModal, setShowModal] = useState(true);
+	const [showModal, setShowModal] = useState(false);
 
 	// Handles axios call on mount.
-	useEffect(() => {
-		axios.get('http://localhost:8000/api/collections/').then((res) => {
+	useEffect(() =>
+	{
+		axios.get('http://localhost:8000/api/collections/').then((res) =>
+		{
 			setCollections([...res.data]);
 		});
 	}, []);
 
 	// Handles no collections.
-	if (!collections.length) {
+	if (!collections.length)
+	{
 		return 'Loading';
+	}
+
+	function handleOpen()
+	{
+		setShowModal(true);
 	}
 
 	return (
@@ -28,9 +37,7 @@ export default function Collections() {
 			) : (
 				<>
 					<CollectionsView collections={collections} />
-					<Link to={`/collections/add-collection`}>
-						<button>Add Collection</button>
-					</Link>
+					<button onClick={handleOpen}>Add Collection</button>
 				</>
 			)}
 		</div>
