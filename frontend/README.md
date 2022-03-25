@@ -1,3 +1,64 @@
+# Introduction to Front end of Collectus app MERN project
+
+This is the front end of Collectus app source code that is require along with back end in order to make the app functionable.
+
+## IMPORTANT NOTE-
+
+This part of the project does not have a mongoDB connection. To setup the connection please view readme.MD in backend file.
+
+# Getting Started with Front End Installation
+
+### `npm i`
+
+### `npm install react`
+
+### `npm install react-router-dom`
+
+### `npm install react-bootstrap`
+
+### `npm install bootstrap`
+
+### `npm install axios`
+
+# Start app
+
+### `npm start`
+
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in your browser.
+The page will reload when you make changes.
+You may also see any lint errors in the console.
+
+# Languages & tools
+
+### JavaScript
+
+### CSS
+
+### react-bootstrap
+
+### axios
+
+### bootstrap
+
+### react-router-dom
+
+### react
+
+### HTML
+
+# Home Page
+
+![home](./public/Home.png)
+
+# Collection Card
+
+![collectioncard](./public//collectioncard.png)
+
+# Single Item Card
+
+![itemCard](./public/item%20card.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

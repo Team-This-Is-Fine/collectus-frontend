@@ -1,34 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import './CollectionsView.css';
 import axios from 'axios';
+import CollectionsForm from '../collectionsForm/CollectionsForm';
 
 // Handles how collections are rendered.
-export default function CollectionsView({ collections })
+export default function CollectionsView({ collections, collectionId, setCollectionId, showModal, setShowModal })
 {
+  const navigate = useNavigate();
   function handleDelete(id)
   {
-    console.log(id);
+    const confirm = window.confirm("Are you sure you want to delete?");
 
-    axios
-      .delete(`http://localhost:8000/api/collection/${id}`)
-      .then((res) =>
-      {
-
-      })
-
+    if (confirm)
+    {
+      axios.delete(`http://localhost:8000/api/collections/${id}`)
+        .then(() =>
+        {
+          navigate("/collections");
+        });
+    }
   }
 
+  function handleEdit(id)
+  {
+    setShowModal(true);
+    setCollectionId(id);
+  }
+  console.log(collectionId);
+
   return (
-    <div className="card-container">
-      <Row xs={1} md={2} lg={3} xl={4} className='g-4' >
+    <div className='card-container'>
+      <Row xs={1} md={2} lg={3} xl={4} className='g-4'>
         {collections.map((element) =>
         {
           return (
-            <Col key={element._id} >
-              <Card
-                className='h-100'>
+            <Col key={element._id}>
+              <Card className='h-100'>
                 {element.img && (
                   <Card.Img
                     variant='top'
@@ -49,10 +58,18 @@ export default function CollectionsView({ collections })
                     <Button variant='outline-dark'>
                       View Collection
                     </Button>
-                    <Button variant='outline-dark' >
-                      Edit Collection
-                    </Button>
-                    <Button variant='outline-dark' onClick={() => handleDelete(element._id)}>
+                  </Link>
+
+                  <Button
+                    variant='outline-dark'
+                    onClick={() => handleEdit(element._id)}>
+                    Edit Collection
+                  </Button>
+
+                  <Link to={`/`}>
+                    <Button
+                      variant='outline-dark'
+                      onClick={() => handleDelete(element._id)}>
                       Delete Collection
                     </Button>
                   </Link>
@@ -61,15 +78,13 @@ export default function CollectionsView({ collections })
             </Col>
           );
         })}
-        {/* {(activeItem || error) && (
-        <Detail
-          objectDetail={activeItem}
-          show={show}
-          handleClose={handleClose}
-          error={error}
-        />
-      )} */}
       </Row>
+      {showModal &&
+        <CollectionsForm
+          setShowModal={setShowModal}
+          collectionId={collectionId}
+        />
+      }
     </div >
   );
 }

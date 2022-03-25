@@ -6,13 +6,7 @@ const collectionSchema = new mongoose.Schema({
   name: String,
   img: String,
   collectionSize: Number,
-  //   list: [
-  //     {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Item",
-  //       //   required: true,
-  //     },
-  //   ],
+
 
   item: [itemSchema],
 });
