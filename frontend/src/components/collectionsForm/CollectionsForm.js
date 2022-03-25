@@ -3,48 +3,42 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function CollectionsForm({ collections, setCollections, setShowModal })
-{
-	const [newCollection, setNewCollection] = useState(
-		{
-			name: "",
-			imageUrl: ""
-		}
-	);
-	// const [name, setname] = useState('');
-	// const [imageUrl, setImageUrl] = useState('');
+export default function CollectionsForm({
+	collections,
+	setCollections,
+	setShowModal,
+}) {
+	const empty = {
+		name: '',
+		img: '',
+	};
+
+	const [newCollection, setNewCollection] = useState(empty);
 	const navigate = useNavigate();
 
-	function handleNameChange(e)
-	{
+	function handleNameChange(e) {
 		setNewCollection({ ...newCollection, name: e.target.value });
 	}
 
-	function handleImageChange(e)
-	{
-		setNewCollection({ ...newCollection, imageUrl: e.target.value });
+	function handleImageChange(e) {
+		setNewCollection({ ...newCollection, img: e.target.value });
 	}
 
-	function handleSubmit(e)
-	{
-		e.preventDefault();
-
-		axios.post('http://localhost:8000/api/collections/', newCollection)
-			.then((res) =>
-			{
-				setCollections([...collections, res])
-				navigate("/collections");
+	function handleSubmit(e) {
+		axios
+			.post('http://localhost:8000/api/collections/', newCollection)
+			.then((res) => {
+				setCollections([...collections, res]);
 			})
-			.catch((error) =>
-			{
+			.catch((error) => {
 				console.log(error);
-			})
+			});
 
 		setShowModal(false);
+		navigate('/collections');
 	}
 
-	function handleClose()
-	{
+	function handleClose() {
 		setShowModal(false);
 	}
 
@@ -69,18 +63,17 @@ export default function CollectionsForm({ collections, setCollections, setShowMo
 						<Form.Control
 							type='text'
 							onChange={handleImageChange}
-							value={newCollection.imageUrl}
-							className="collection-image"
-							required />
+							value={newCollection.img}
+							className='collection-image'
+							required
+						/>
 					</Form.Group>
-					<Button type="submit">Submit</Button>
+					<Button type='submit'>Submit</Button>
 				</Form>
 			</Modal.Body>
 
 			<Modal.Footer>
-
 				<Button onClick={handleClose}>Close</Button>
-
 			</Modal.Footer>
 		</Modal>
 	);

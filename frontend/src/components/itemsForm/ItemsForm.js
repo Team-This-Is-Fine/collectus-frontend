@@ -1,47 +1,111 @@
-import React from "react";
-import { useState } from "react";
-import { Modal, ModalForm, Button } from "react-bootstrap";
+import { Modal, Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export default function ItemsForms() {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [itemCreate, setItemCreate] = useState({
-    name: "",
-    img: "",
-    description: "",
-    duplicatates: 0,
-  });
+export default function ItemsForm({ id, items, setItems, setShowModal }) {
+	const [newItem, setNewItem] = useState({
+		name: '',
+		img: '',
+		description: '',
+		duplicates: 0,
+	});
+	// const [name, setname] = useState('');
+	// const [imageUrl, setImageUrl] = useState('');
+	const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setItemCreate({ ...itemCreate, [event.target.id]: event.target.value });
-  };
+	function handleNameChange(e) {
+		setNewItem({ ...newItem, name: e.target.value });
+	}
 
-  const handleClose = () => {
-    setModalShow(false);
-  };
+	function handleImageChange(e) {
+		setNewItem({ ...newItem, img: e.target.value });
+	}
 
-  return (
-    <Modal
-      show={modalShow}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleClose}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
+	function handleDescriptionChange(e) {
+		setNewItem({ ...newItem, description: e.target.value });
+	}
+
+	function handleDuplicatesChange(e) {
+		setNewItem({ ...newItem, duplicates: e.target.value });
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		console.log(id);
+		axios
+			.post(`http://localhost:8000/api/items/collections/${id}`, newItem)
+			.then((res) => {
+				setItems([...items, res]);
+			})
+			.then(() => {
+				navigate(`collections/${id}`);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+		setShowModal(false);
+		// navigate(`/collections/${id}`);
+	}
+
+	function handleClose() {
+		setShowModal(false);
+	}
+
+	return (
+		<Modal show={true}>
+			<Modal.Header>Add Item</Modal.Header>
+
+			<Modal.Body>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group>
+						<Form.Label>Name: </Form.Label>
+						<Form.Control
+							type='text'
+							onChange={handleNameChange}
+							value={newItem.name}
+							required
+						/>
+					</Form.Group>
+
+					<Form.Group>
+						<Form.Label>Image Url: </Form.Label>
+						<Form.Control
+							type='text'
+							onChange={handleImageChange}
+							value={newItem.img}
+							className='collection-image'
+							required
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Description: </Form.Label>
+						<Form.Control
+							type='text'
+							onChange={handleDescriptionChange}
+							value={newItem.description}
+							className='item-description'
+							required
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Duplicates</Form.Label>
+						<Form.Control
+							type='number'
+							onChange={handleDuplicatesChange}
+							value={newItem.duplicates}
+							className='item-duplicates'
+							required
+						/>
+					</Form.Group>
+					<Button type='submit'>Submit</Button>
+				</Form>
+			</Modal.Body>
+
+			<Modal.Footer>
+				<Button onClick={handleClose}>Close</Button>
+			</Modal.Footer>
+		</Modal>
+	);
 }

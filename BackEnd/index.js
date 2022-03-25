@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  return res.redirect("/api/items");
+  return res.redirect("/api/collections");
 });
 
 const collectionController = require("./controllers/collectionController");

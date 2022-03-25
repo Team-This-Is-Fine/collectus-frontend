@@ -1,63 +1,50 @@
-import ItemsView from "../ItemsView/ItemsView";
-import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ItemsForm from "../ItemsForm/ItemsForm";
-import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import ItemsForm from '../itemsForm/ItemsForm';
+import ItemsView from '../itemsView/ItemsView';
+import { Button } from 'react-bootstrap';
 
 // Items in a collection.
 export default function Items() {
-  const { id } = useParams();
-  const [collectionItems, setCollectionItems] = useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
+	const { id } = useParams();
+	// const [collectionItems, setCollectionItems] = useState([]);
+	const [items, setItems] = useState([]);
+	const [showModal, setShowModal] = useState(false);
 
-  const handleClose = () => {
-    setModalShow(false);
-  };
+	// Handles axios call on mount.
+	useEffect(() => {
+		axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
+			console.log(res.data.item);
+			setItems([...res.data.item]);
+		});
+	}, [id]);
 
-  const handleShow = () => {
-    setModalShow(true);
-  };
+	// Handles no collections.
+	if (!items.length) {
+		return 'Loading';
+	}
 
-  // Handles axios call on mount.
-  useEffect(() => {
-    axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
-      setCollectionItems([...res.data.item]);
-    });
-  }, []);
+	function handleOpen() {
+		setShowModal(true);
+	}
 
-  // Handles no items.
-  if (!collectionItems.length) {
-    return "Loading";
-  }
-
-  return (
-    <div className="items-container">
-      <ItemsView collectionItems={collectionItems} />
-      {/* <Link to={`/items/add-`}> */}
-      <Button variant="primary" onClick={handleShow}>
-        Add Item
-      </Button>
-      <Modal
-        show={modalShow}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ItemsForm />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-      {/* </Link> */}
-    </div>
-  );
+	return (
+		<div className='home-container'>
+			{showModal ? (
+				<ItemsForm
+					setShowModal={setShowModal}
+					showModal={showModal}
+					items={items}
+					setItems={setItems}
+					id={id}
+				/>
+			) : (
+				<>
+					<ItemsView items={items} id={id} />
+					<Button onClick={handleOpen}>Add Item</Button>
+				</>
+			)}
+		</div>
+	);
 }
