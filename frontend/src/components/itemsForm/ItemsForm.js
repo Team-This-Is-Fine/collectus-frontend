@@ -30,20 +30,19 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 		setNewItem({ ...newItem, duplicates: e.target.value });
 	}
 
-	function handleSubmit(e) {
-		e.preventDefault();
-		console.log(id);
-		axios
-			.post(`http://localhost:8000/api/items/collections/${id}`, newItem)
-			.then((res) => {
-				setItems([...items, res]);
-			})
-			.then(() => {
-				navigate(`collections/${id}`);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(id);
+    axios
+      .post(`http://localhost:8000/api/items/collections/${id}`, newItem)
+      .then((res) => {
+        setItems([...items, res]);
+      }).then (() => {
+        navigate(`/collections/${id}`)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
 		setShowModal(false);
 		// navigate(`/collections/${id}`);

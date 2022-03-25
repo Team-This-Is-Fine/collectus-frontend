@@ -1,6 +1,5 @@
 const express = require('express');
 const { collection } = require('../models/Collection');
-// const { collection } = require("../db/connection");
 const Collection = require('../models/Collection');
 const Item = require('../models/Item');
 
@@ -8,7 +7,6 @@ const router = express.Router();
 
 router.post('/collections/:id', (req, res, next) => {
 	const newItem = req.body;
-	// const collectionId = newItem.collectionId;
 	Collection.findById(req.params.id)
 		.then((collection) => {
 			collection.item.push(newItem);
@@ -30,21 +28,21 @@ router.put('/collections/:id', (req, res, next) => {
 		})
 		.then(() => res.sendStatus(200))
 		.catch(next);
-	//     res.json(updatedDocument);
-	//   } catch (error) {
-	//     console.log(error);
-	//   }
+
 });
 
-router.delete('/collections/:id', (req, res, next) => {
-	const id = req.params.id;
-	Collection.findOne({ 'item._id': id })
-		.then((collection) => {
-			collection.item.id(id).remove();
-			return collection.save();
-		})
-		.then(() => res.sendStatus(204))
-		.catch(next);
+router.delete("/collections/:id/:itemsId", async (req, res, next) =>
+{
+
+    Collection.findOneAndUpdate(
+        { id: req.params.id},
+        { $pull: { item: {_id: req.params.itemsId}}},
+        {new: true},
+        function(err){
+            if (err) {console.log(err)}
+        }
+    )
+     
 });
 
 module.exports = router;

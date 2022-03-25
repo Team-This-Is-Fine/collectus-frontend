@@ -7,10 +7,11 @@ import { Button } from 'react-bootstrap';
 
 // Items in a collection.
 export default function Items() {
-	const { id } = useParams();
-	// const [collectionItems, setCollectionItems] = useState([]);
-	const [items, setItems] = useState([]);
-	const [showModal, setShowModal] = useState(false);
+  const { id } = useParams();
+  const [currentCollection, setCurrentCollection] = useState(id);
+  // const [collectionItems, setCollectionItems] = useState([]);
+  const [items, setItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
 	// Handles axios call on mount.
 	useEffect(() => {
@@ -29,22 +30,22 @@ export default function Items() {
 		setShowModal(true);
 	}
 
-	return (
-		<div className='home-container'>
-			{showModal ? (
-				<ItemsForm
-					setShowModal={setShowModal}
-					showModal={showModal}
-					items={items}
-					setItems={setItems}
-					id={id}
-				/>
-			) : (
-				<>
-					<ItemsView items={items} id={id} />
-					<Button onClick={handleOpen}>Add Item</Button>
-				</>
-			)}
-		</div>
-	);
+  return (
+    <div className="home-container">
+      {showModal ? (
+        <ItemsForm
+          setShowModal={setShowModal}
+          showModal={showModal}
+          items={items}
+          setItems={setItems}
+          id ={id}
+        />
+      ) : (
+        <>
+          <ItemsView items={items} id={id} currentCollection={currentCollection} />
+          <button onClick={handleOpen}>Add Item</button>
+        </>
+      )}
+    </div>
+  );
 }
