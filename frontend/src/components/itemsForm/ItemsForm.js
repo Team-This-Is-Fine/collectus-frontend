@@ -26,6 +26,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 		setNewItem({ ...newItem, description: e.target.value });
 	}
 
+<<<<<<< HEAD
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -41,6 +42,30 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 		setShowModal(false);
 		navigate(`/collections/${id}`);
 	}
+=======
+  function handleDuplicatesChange(e) {
+    setNewItem({ ...newItem, duplicates: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(id);
+    axios
+      .post(`http://localhost:8000/api/items/collections/${id}`, newItem)
+      .then((res) => {
+        setItems([...items, res]);
+      })
+      .then(() => {
+        navigate(`collections/${id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setShowModal(false);
+    // navigate(`/collections/${id}`);
+  }
+>>>>>>> 9eed85ed47ab56ed08efff748ca6bc220dbbc91e
 
 	function handleClose() {
 		setShowModal(false);
@@ -62,6 +87,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 						/>
 					</Form.Group>
 
+<<<<<<< HEAD
 					<Form.Group>
 						<Form.Label>Image Url: </Form.Label>
 						<Form.Control
@@ -95,6 +121,41 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 					<Button type='submit'>Submit</Button>
 				</Form>
 			</Modal.Body>
+=======
+          <Form.Group>
+            <Form.Label>Image Url: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleImageChange}
+              value={newItem.img}
+              className="collection-image"
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Description: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={handleDescriptionChange}
+              value={newItem.description}
+              className="item-description"
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Duplicates</Form.Label>
+            <Form.Control
+              type="number"
+              onChange={handleDuplicatesChange}
+              value={newItem.duplicates}
+              className="item-duplicates"
+              required
+            />
+          </Form.Group>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Modal.Body>
+>>>>>>> 9eed85ed47ab56ed08efff748ca6bc220dbbc91e
 
 			<Modal.Footer>
 				<Button onClick={handleClose}>Close</Button>

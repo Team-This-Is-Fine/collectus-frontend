@@ -19,6 +19,7 @@ router.post('/collections/:id', (req, res, next) => {
 		.catch(next);
 });
 
+<<<<<<< HEAD
 router.put('/collections/:id', (req, res, next) => {
 	const id = req.params.id;
 	const itemData = req.body;
@@ -35,6 +36,25 @@ router.put('/collections/:id', (req, res, next) => {
 	//     console.log(error);
 	//   }
 });
+=======
+router.put("/collections/:id", (req, res, next) =>
+{
+    const id = req.params.id;
+    const itemData = req.body
+    Collection.findOne({ 'item._id': id })
+        .then((collection) =>
+        {
+            const item = collection.item.id(id);
+            item.set(itemData);
+            return collection.save();
+        }).then(() =>
+            res.sendStatus(200)).catch(next); 
+//     res.json(updatedDocument);
+//   } catch (error) {
+//     console.log(error);
+//   }
+})
+>>>>>>> 9eed85ed47ab56ed08efff748ca6bc220dbbc91e
 
 router.delete('/collections/:id', (req, res, next) => {
 	const id = req.params.id;

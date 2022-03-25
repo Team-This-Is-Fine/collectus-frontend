@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import './App.css';
 import Collections from './components/collections/Collections';
 import Items from './components/items/Items';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
+=======
+import "./App.css";
+import Collections from "./components/collections/Collections";
+import Items from "./components/items/Items";
+import { Routes, Route, Link } from "react-router-dom";
+import { Image } from "react-bootstrap";
+>>>>>>> 9eed85ed47ab56ed08efff748ca6bc220dbbc91e
 
 function App() {
 	return (
