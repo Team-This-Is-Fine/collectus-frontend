@@ -1,17 +1,12 @@
 import { Modal, Form, Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function CollectionsForm({ collectionId, setCollectionId, setShowModal })
+export default function CollectionEditForm({ editId })
 {
-  const empty = {
-    name: '',
-    img: '',
-  };
-
   // const [putId, setPutId] = useState(editId);
-  const [newCollection, setNewCollection] = useState(empty);
+  const [newCollection, setNewCollection] = useState();
 
   function handleNameChange(e)
   {
@@ -23,39 +18,14 @@ export default function CollectionsForm({ collectionId, setCollectionId, setShow
     setNewCollection({ ...newCollection, img: e.target.value });
   }
 
-  console.log(collectionId);
-
-  function handleSubmit(e)
+  function handleSubmit()
   {
-    console.log(collectionId);
-    if (!collectionId)
-    {
-      axios.post('http://localhost:8000/api/collections/', newCollection)
-        .then((res) =>
-        {
-          setShowModal(false);
-          // navigate("/collections");
-        })
-    }
-    else
-    {
-      axios.put(`http://localhost:8000/api/collections/${collectionId}`, newCollection)
-        .then((res) =>
-        {
-          setShowModal(false);
-          // navigate("/collections");
-        })
-    }
-  }
 
-  function handleClose()
-  {
-    setShowModal(false);
   }
 
   return (
     <Modal show={true}>
-      <Modal.Header>Add Collection</Modal.Header>
+      <Modal.Header>Edit Collection</Modal.Header>
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
@@ -75,7 +45,7 @@ export default function CollectionsForm({ collectionId, setCollectionId, setShow
               onChange={handleImageChange}
               value={newCollection.img} />
           </Form.Group>
-          <Button type='submit'>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </Modal.Body>
 

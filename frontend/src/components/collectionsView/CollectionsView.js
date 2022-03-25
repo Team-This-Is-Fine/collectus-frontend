@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import './CollectionsView.css';
 import axios from 'axios';
+import CollectionsForm from '../collectionsForm/CollectionsForm';
 
 // Handles how collections are rendered.
-export default function CollectionsView({ collections })
+export default function CollectionsView({ collections, collectionId, setCollectionId, showModal, setShowModal })
 {
   function handleDelete(id)
   {
-    console.log(id);
+    const confirm = window.confirm("Are you sure you want to delete?");
 
-    axios
-      .delete(`http://localhost:8000/api/collection/${id}`)
-      .then((res) => { });
+    if (confirm)
+    {
+      axios.delete(`http://localhost:8000/api/collections/${id}`)
+        .then(() =>
+        {
+          navigate("/collections");
+        });
+    }
   }
+
+  function handleEdit(id)
+  {
+    setShowModal(true);
+    setCollectionId(id);
+  }
+  console.log(collectionId);
 
   return (
     <div className='card-container'>
@@ -41,8 +54,18 @@ export default function CollectionsView({ collections })
                 </Card.Body>
                 <Card.Footer>
                   <Link to={`/collections/${element._id}`}>
-                    <Button variant='outline-dark'>View Collection</Button>
-                    <Button variant='outline-dark'>Edit Collection</Button>
+                    <Button variant='outline-dark'>
+                      View Collection
+                    </Button>
+                  </Link>
+
+                  <Button
+                    variant='outline-dark'
+                    onClick={() => handleEdit(element._id)}>
+                    Edit Collection
+                  </Button>
+
+                  <Link to={`/`}>
                     <Button
                       variant='outline-dark'
                       onClick={() => handleDelete(element._id)}>
@@ -54,15 +77,13 @@ export default function CollectionsView({ collections })
             </Col>
           );
         })}
-        {/* {(activeItem || error) && (
-        <Detail
-          objectDetail={activeItem}
-          show={show}
-          handleClose={handleClose}
-          error={error}
-        />
-      )} */}
       </Row>
-    </div>
+      {showModal &&
+        <CollectionsForm
+          setShowModal={setShowModal}
+          collectionId={collectionId}
+        />
+      }
+    </div >
   );
 }
