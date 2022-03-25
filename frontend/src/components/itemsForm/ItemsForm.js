@@ -38,6 +38,9 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
       .then((res) => {
         setItems([...items, res]);
       })
+      .then(() => {
+        navigate(`collections/${id}`);
+      })
       .catch((error) => {
         console.log(error);
       });

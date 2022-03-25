@@ -18,7 +18,7 @@ export default function Items() {
       console.log(res.data.item);
       setItems([...res.data.item]);
     });
-  }, []);
+  }, [id]);
 
   // Handles no collections.
   if (!items.length) {
