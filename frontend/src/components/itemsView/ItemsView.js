@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 export default function ItemsView({ items, id }) {
-
+  // const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   function handleDelete(itemId)

@@ -4,15 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function ItemsForm({ id, items, setItems, setShowModal }) {
-	const [newItem, setNewItem] = useState({
-		name: '',
-		img: '',
-		description: '',
-		duplicates: 0,
-	});
-	// const [name, setname] = useState('');
-	// const [imageUrl, setImageUrl] = useState('');
-	const navigate = useNavigate();
+  const [newItem, setNewItem] = useState({
+    name: "",
+    img: "",
+    description: "",
+    duplicates: 0,
+  });
+  const navigate = useNavigate();
 
 	function handleNameChange(e) {
 		setNewItem({ ...newItem, name: e.target.value });

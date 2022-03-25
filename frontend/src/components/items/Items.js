@@ -1,9 +1,11 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import ItemsForm from '../itemsForm/ItemsForm';
-import ItemsView from '../itemsView/ItemsView';
-import { Button } from 'react-bootstrap';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import CollectionsForm from "../collectionsForm/CollectionsForm";
+import ItemsForm from "../itemsForm/ItemsForm";
+import ItemsView from "../itemsView/ItemsView";
+import CollectionsView from "../collectionsView/CollectionsView";
+import "./Items.css";
 
 // Items in a collection.
 export default function Items() {
@@ -21,10 +23,10 @@ export default function Items() {
 		});
 	}, [id]);
 
-	// Handles no collections.
-	if (!items.length) {
-		return 'Loading';
-	}
+  // Handles no collections.
+  if (!items.length) {
+    {<button onClick={handleOpen}>Add Item</button>}
+  } 
 
 	function handleOpen() {
 		setShowModal(true);
@@ -32,7 +34,9 @@ export default function Items() {
 
   return (
     <div className="home-container">
+      <button onClick={handleOpen}>Add Item</button>
       {showModal ? (
+        <>
         <ItemsForm
           setShowModal={setShowModal}
           showModal={showModal}
@@ -40,6 +44,8 @@ export default function Items() {
           setItems={setItems}
           id ={id}
         />
+        <button onClick={handleOpen}>Add Item</button>
+        </>
       ) : (
         <>
           <ItemsView items={items} id={id} currentCollection={currentCollection} />
