@@ -1,4 +1,4 @@
-# Introdiction to Front end of Collectus app MERN project
+# Introduction to Front end of Collectus app MERN project
 
 This is the front end of Collectus app source code that is require along with back end in order to make the app functionable.
 
