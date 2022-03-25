@@ -1,8 +1,8 @@
 import "./App.css";
 import Collections from "./components/collections/Collections";
 import CollectionsForm from "./components/collectionsForm/CollectionsForm";
-import Items from "./components/Items/Items";
-import ItemsForm from "./components/ItemsForm/ItemsForm";
+import Items from "./components/items/Items";
+import ItemsForm from "./components/itemsForm/ItemsForm";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
