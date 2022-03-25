@@ -47,6 +47,18 @@ You may also see any lint errors in the console.
 
 ### HTML
 
+# Home Page
+
+![home](./public/Home.png)
+
+# Collection Card
+
+![collectioncard](./public//collectioncard.png)
+
+# Single Item Card
+
+![itemCard](./public/item%20card.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
