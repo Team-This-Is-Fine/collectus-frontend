@@ -49,7 +49,15 @@ You may also see any lint errors in the console.
 
 # Home Page
 
-Screen Shot 2022-03-25 at 10.34.24 AM
+![home](./public/Home.png)
+
+# Collection Card
+
+![collectioncard](./public//collectioncard.png)
+
+# Single Item Card
+
+![itemCard](./public/item%20card.png)
 
 # Getting Started with Create React App
 
