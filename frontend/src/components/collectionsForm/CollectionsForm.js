@@ -8,12 +8,12 @@ export default function CollectionsForm({
 	setCollections,
 	setShowModal,
 }) {
-	const [newCollection, setNewCollection] = useState({
+	const empty = {
 		name: '',
 		img: '',
-	});
-	// const [name, setname] = useState('');
-	// const [imageUrl, setImageUrl] = useState('');
+	};
+
+	const [newCollection, setNewCollection] = useState(empty);
 	const navigate = useNavigate();
 
 	function handleNameChange(e) {
@@ -25,8 +25,6 @@ export default function CollectionsForm({
 	}
 
 	function handleSubmit(e) {
-		e.preventDefault();
-
 		axios
 			.post('http://localhost:8000/api/collections/', newCollection)
 			.then((res) => {
