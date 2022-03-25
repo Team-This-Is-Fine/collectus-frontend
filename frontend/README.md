@@ -47,6 +47,10 @@ You may also see any lint errors in the console.
 
 ### HTML
 
+# Home Page
+
+Screen Shot 2022-03-25 at 10.34.24 AM
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
