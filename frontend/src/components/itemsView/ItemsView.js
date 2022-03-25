@@ -1,6 +1,13 @@
-import axios from "axios";
+
+import { React, useEffect, useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import ItemDetails from "../itemDetails/ItemDetails";
+
+
+
+
 
 
 export default function ItemsView({ items, id }) {
@@ -16,6 +23,7 @@ export default function ItemsView({ items, id }) {
       window.location.reload("true");
   }
 }
+
   return (
     <div className="card-container">
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
@@ -32,9 +40,19 @@ export default function ItemsView({ items, id }) {
                 )}
                 <Card.Body>
                   {item.img ? "" : <Card.Title>No Image Available</Card.Title>}
-                  <Card.Text className="text-muted">{item.name}</Card.Text>
+                  <Card.Text className="text-muted">
+                    Name: {item.name}
+                  </Card.Text>
                 </Card.Body>
                 <Card.Footer>
+
+                  <Card.Text className="text-muted">
+                    Description: {item.description}
+                  </Card.Text>
+                  <Card.Text className="text-muted">
+                    Duplicates: {item.duplicates}
+                  </Card.Text>
+
                   <Link to={`/items/${item.id}`}>
                     <Button variant="outline-dark">Details</Button>
                   </Link>
@@ -43,6 +61,7 @@ export default function ItemsView({ items, id }) {
                     Delete
                   </Button>
                   </Link>
+
                 </Card.Footer>
               </Card>
             </Col>
