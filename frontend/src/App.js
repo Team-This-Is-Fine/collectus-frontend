@@ -3,6 +3,7 @@ import Collections from "./components/collections/Collections";
 import Items from "./components/items/Items";
 import { Routes, Route, Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
+import ItemDetails from "./components/itemDetails/ItemDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/collections" element={<Collections />} />
         <Route path="/collections/:id" element={<Items />} />
         {/* <Route path='/items/:id' element={<ItemsDetail />} /> */}
+        <Route path="/items/detail/:id" element={<ItemDetails />} />
       </Routes>
     </div>
   );

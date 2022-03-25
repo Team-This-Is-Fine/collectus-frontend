@@ -1,9 +1,15 @@
+import { React, useEffect, useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import ItemDetails from "../itemDetails/ItemDetails";
 
 // Handles how items are rendered.
 export default function ItemsView({ items }) {
+  // function handleOpen() {
+  //   setItemDetails(itemDetails);
+  // }
+
   return (
     <div className="card-container">
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
@@ -23,8 +29,14 @@ export default function ItemsView({ items }) {
                   <Card.Text className="text-muted">{item.name}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/items/${item.id}`}>
-                    <Button variant="outline-dark">Details</Button>
+                  <Link to={`/items/detail/${item._id}`}>
+                    <Button
+                      // itemDetails={itemDetails}
+                      // onClick={handleOpen}
+                      variant="outline-dark"
+                    >
+                      Details
+                    </Button>
                   </Link>
                 </Card.Footer>
               </Card>
