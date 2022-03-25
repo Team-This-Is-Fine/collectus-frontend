@@ -35,8 +35,8 @@ router.put("/collections/:id", (req, res, next) =>
 
 router.delete("/collections/:id/:itemsId", async (req, res, next) =>
 {
-    Collection.findOneAndUpdate(
-        { id: req.params.id},
+    Collection.findByIdAndUpdate(
+        { _id: req.params.id},
         { $pull: { item: {_id: req.params.itemsId}}},
         {new: true},
         function(err){
