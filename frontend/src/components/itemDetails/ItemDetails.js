@@ -8,7 +8,7 @@ function ItemDetails({}) {
   const [itemDetails, setItemDetails] = useState(null);
 
   useEffect(() => {
-    // console.log(id);
+    console.log(id);
     axios.get(`http://localhost:8000/api/collections/${id}`).then((res) => {
       console.log(res);
       //   setItemDetails(...res.data.item });

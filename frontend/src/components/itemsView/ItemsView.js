@@ -26,18 +26,17 @@ export default function ItemsView({ items }) {
                 )}
                 <Card.Body>
                   {item.img ? "" : <Card.Title>No Image Available</Card.Title>}
-                  <Card.Text className="text-muted">{item.name}</Card.Text>
+                  <Card.Text className="text-muted">
+                    Name: {item.name}
+                  </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Link to={`/items/detail/${item._id}`}>
-                    <Button
-                      // itemDetails={itemDetails}
-                      // onClick={handleOpen}
-                      variant="outline-dark"
-                    >
-                      Details
-                    </Button>
-                  </Link>
+                  <Card.Text className="text-muted">
+                    Description: {item.description}
+                  </Card.Text>
+                  <Card.Text className="text-muted">
+                    Duplicates: {item.duplicates}
+                  </Card.Text>
                 </Card.Footer>
               </Card>
             </Col>
