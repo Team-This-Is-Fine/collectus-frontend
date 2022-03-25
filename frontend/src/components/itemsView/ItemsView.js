@@ -1,8 +1,21 @@
+import axios from "axios";
 import { Card, Col, Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-// Handles how items are rendered.
-export default function ItemsView({ items }) {
+
+export default function ItemsView({ items, id }) {
+  // const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  function handleDelete(itemId)
+  {
+    const confirm = window.confirm("are you sure you want to delete?");
+    if (confirm)
+    {
+      axios.delete(`http://localhost:8000/api/items/collections/${id}/${itemId}`)
+      window.location.reload("true");
+  }
+}
   return (
     <div className="card-container">
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
@@ -25,19 +38,17 @@ export default function ItemsView({ items }) {
                   <Link to={`/items/${item.id}`}>
                     <Button variant="outline-dark">Details</Button>
                   </Link>
+                  <Link to={`/collections/${id}`}>
+                  <Button variant='outline-dark' onClick={() => handleDelete(item._id)}>
+                    Delete
+                  </Button>
+                  </Link>
                 </Card.Footer>
               </Card>
             </Col>
           );
         })}
-        {/* {(activeItem || error) && (
-        <Detail
-          objectDetail={activeItem}
-          show={show}
-          handleClose={handleClose}
-          error={error}
-        />
-      )} */}
+      
       </Row>
     </div>
   );

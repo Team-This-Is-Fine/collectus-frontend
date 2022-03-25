@@ -8,6 +8,7 @@ import CollectionsForm from '../collectionsForm/CollectionsForm';
 // Handles how collections are rendered.
 export default function CollectionsView({ collections, collectionId, setCollectionId, showModal, setShowModal })
 {
+  const navigate = useNavigate();
   function handleDelete(id)
   {
     const confirm = window.confirm("Are you sure you want to delete?");
