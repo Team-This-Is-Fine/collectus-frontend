@@ -26,7 +26,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
     setNewItem({ ...newItem, description: e.target.value });
   }
 
-  function handleDuplicateChange(e) {
+  function handleDuplicatesChange(e) {
     setNewItem({ ...newItem, duplicates: e.target.value });
   }
 
@@ -37,6 +37,9 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
       .post(`http://localhost:8000/api/items/collections/${id}`, newItem)
       .then((res) => {
         setItems([...items, res]);
+      })
+      .then(() => {
+        navigate(`collections/${id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +93,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
             <Form.Label>Duplicates</Form.Label>
             <Form.Control
               type="number"
-              onChange={handleDuplicateChange}
+              onChange={handleDuplicatesChange}
               value={newItem.duplicates}
               className="item-duplicates"
               required

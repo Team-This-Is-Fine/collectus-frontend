@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import CollectionsForm from "../collectionsForm/CollectionsForm";
 import ItemsForm from "../itemsForm/ItemsForm";
 import ItemsView from "../itemsView/ItemsView";
-import CollectionsView from "../collectionsView/CollectionsView";
+import { Button } from "react-bootstrap";
 
 // Items in a collection.
 export default function Items() {
@@ -19,7 +18,7 @@ export default function Items() {
       console.log(res.data.item);
       setItems([...res.data.item]);
     });
-  }, []);
+  }, [id]);
 
   // Handles no collections.
   if (!items.length) {
@@ -38,12 +37,12 @@ export default function Items() {
           showModal={showModal}
           items={items}
           setItems={setItems}
-          id ={id}
+          id={id}
         />
       ) : (
         <>
           <ItemsView items={items} id={id} />
-          <button onClick={handleOpen}>Add Item</button>
+          <Button onClick={handleOpen}>Add Item</Button>
         </>
       )}
     </div>
