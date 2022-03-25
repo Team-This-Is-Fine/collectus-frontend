@@ -32,7 +32,7 @@ export default function ItemsForm({ id, items, setItems, setShowModal }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(id);
+    // console.log(id);
     axios
       .post(`http://localhost:8000/api/items/collections/${id}`, newItem)
       .then((res) => {

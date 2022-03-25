@@ -2,7 +2,7 @@ import axios from "axios";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-// Handles how items are rendered.
+
 export default function ItemsView({ items, id }) {
 
   const navigate = useNavigate();
@@ -13,12 +13,9 @@ export default function ItemsView({ items, id }) {
     if (confirm)
     {
       axios.delete(`http://localhost:8000/api/items/collections/${id}/${itemId}`)
-      .then(() => {
-        navigate(-1);
-        console.log(itemId);
-      });
-    }
+      window.location.reload("true");
   }
+}
   return (
     <div className="card-container">
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
@@ -51,14 +48,7 @@ export default function ItemsView({ items, id }) {
             </Col>
           );
         })}
-        {/* {(activeItem || error) && (
-        <Detail
-          objectDetail={activeItem}
-          show={show}
-          handleClose={handleClose}
-          error={error}
-        />
-      )} */}
+      
       </Row>
     </div>
   );

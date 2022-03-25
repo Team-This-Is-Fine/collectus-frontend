@@ -40,7 +40,7 @@ router.delete("/collections/:id/:itemsId", async (req, res, next) =>
         {new: true},
         function(err){
             if (err) {console.log(err)}
-        }
+        },
     )
      
 });
