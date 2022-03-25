@@ -1,5 +1,6 @@
 import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ItemDetails from "../itemDetails/ItemDetails";
 
 // Handles how items are rendered.
 export default function ItemsView({ items }) {
