@@ -1,131 +1,99 @@
-# Introduction to Front end of Collectus app MERN project
+# Collectus Front-End
 
-This is the front end of Collectus app source code that is require along with back end in order to make the app functionable.
+This is the repo for the front-end of the Collectus app. The purpose of this app is to allow users to inventory and share their collectibles.
 
-## IMPORTANT NOTE-
+### Collectus Back-End
 
-This part of the project does not have a mongoDB connection. To setup the connection please view readme.MD in backend file.
+The other half of this app can be found at:
 
-# Getting Started with Front End Installation
+> https://github.com/Team-This-Is-Fine/collectus-api
 
-### `npm i`
+### Application Link
 
-### `npm install react`
+> https://animated-pony-a34044.netlify.app/
 
-### `npm install react-router-dom`
+## Technologies Used
 
-### `npm install react-bootstrap`
+* JavaScript
+* React
+* React-router-dom
+* Bootstrap
+* React-bootstrap
+* HTML
+* CSS
+* Axios
 
-### `npm install bootstrap`
+## Installation Instructions
 
-### `npm install axios`
+* fork and clone this repo
+* cd in the repo
+* open in your IDE
+* in terminal:
 
-# Start app
+```
+npm i
+npm i react react-router-dom bootstrap react-boostrap axios
+npm start
+```
 
-### `npm start`
-
-Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
-The page will reload when you make changes.
-You may also see any lint errors in the console.
 
-# Languages & tools
+### IMPORTANT NOTE
 
-### JavaScript
+In order to use this code, you will also need to install:
 
-### CSS
+> https://github.com/Team-This-Is-Fine/collectus-api
 
-### react-bootstrap
+## App Screenshots
 
-### axios
+![collections](http://tinyimg.io/i/F1pe5jc.png)
+![items](http://tinyimg.io/i/7TXiBy3.png)
 
-### bootstrap
+## Contribution Guidelines
 
-### react-router-dom
+### How to Contribute
 
-### react
+Feel free to contribute to this app with code or suggestions. If you would like to contribute code - install the app, checkout to a dev branch, play with the code, then submit a pull request.
 
-### HTML
+### How to Identify Bugs
 
-# Home Page
+You can submit an issue on the git repo, or work on a dev branch and submit a pull request with suggested code to fix the bug. Please detail the bug and recommendations for solutions if possible.
+
+### How to Propose Improvements
+
+You can submit an issue on the git repository detailing your suggestion.
+
+# Planning
+
+## Wireframes
 
 ![home](./public/Home.png)
-
-# Collection Card
-
 ![collectioncard](./public//collectioncard.png)
-
-# Single Item Card
-
 ![itemCard](./public/item%20card.png)
 
-# Getting Started with Create React App
+## User Stories
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### MVP Goals
 
-## Available Scripts
+* As a user, I would like to make a new collection and be able to add collectibles to it so that I can categorize my collectibles to better organize them.
+* As a user, I would like to view, edit, and delete a collection so that I can maintain an accurate and organized system for my collectibles.
+* As a user, I would like to view and delete items so that I can organize my collectible items individually.
 
-In the project directory, you can run:
+### Stretch Goals
 
-### `npm start`
+* As a user, I would like to see a better design so that my collections can appear as valuable as they are to me.
+* As a user, I would like to be able to edit my collectibles so that I can maintain the accuracy of my collections.
+* As a user, I would like to have user authentication and authorization so that my collections/collectibles aren't accessible to everyone.
+* As a user, I would like to be able to see other users collections/collectibles so that I can find like-minded collectors.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Approach Taken
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For the development of this app, we had a group of four and about 3.5 days to finish. We wanted to try a few different approaches that would allow us to work efficiently while still challenging us to be better developers. To include:
 
-### `npm test`
+* Pair programming - for the first half of the project, we split into pairs - one focusing on front-end, the other focusing on back-end.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Mob programming - when faced with difficult bugs or problems, we would consolidate into one group to solve the problem. This was the primary approach during the second half of the project timeeline.
 
-### `npm run build`
+* Tokens - we set rules for using tokens in order to mitigate excessive usage. If you can't solve something by yourself after about 15 min, get a partner to solve it. If two people can't solve it after 15 min, we all consolidate and try to figure it out with all four members. If it still is too difficult, we would use a token to get help.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Work hours - there was never anything established for coding outside of class time (0900-1700).

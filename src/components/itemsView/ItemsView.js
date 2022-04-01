@@ -5,12 +5,8 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ItemDetails from "../itemDetails/ItemDetails";
 
-
-
-
-
-
-export default function ItemsView({ items, id }) {
+export default function ItemsView({ items, id })
+{
   // const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -21,13 +17,14 @@ export default function ItemsView({ items, id }) {
     {
       axios.delete(`https://collectus-api.herokuapp.com/api/items/collections/${id}/${itemId}`)
       window.location.reload("true");
+    }
   }
-}
 
   return (
     <div className="card-container">
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
-        {items.map((item) => {
+        {items.map((item) =>
+        {
           return (
             <Col key={item._id}>
               <Card className="h-100">
@@ -57,9 +54,9 @@ export default function ItemsView({ items, id }) {
                     <Button variant="outline-dark">Details</Button>
                   </Link>
                   <Link to={`/collections/${id}`}>
-                  <Button variant='outline-dark' onClick={() => handleDelete(item._id)}>
-                    Delete
-                  </Button>
+                    <Button variant='outline-dark' onClick={() => handleDelete(item._id)}>
+                      Delete
+                    </Button>
                   </Link>
 
                 </Card.Footer>
@@ -67,7 +64,7 @@ export default function ItemsView({ items, id }) {
             </Col>
           );
         })}
-      
+
       </Row>
     </div>
   );
