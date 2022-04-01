@@ -1,6 +1,6 @@
 # Collectus Front-End
 
-This is the repo for the front-end of the Collectus app. The purpose of this app is to allow users to inventory and share their collectibles.
+This is the repo for the front-end of the Collectus app. The purpose of this app is to allow users to inventory their collectibles.
 
 ### Collectus Back-End
 
@@ -14,6 +14,8 @@ The other half of this app can be found at:
 
 ## Technologies Used
 
+* VScode
+* Netlify
 * JavaScript
 * React
 * React-router-dom
@@ -22,6 +24,7 @@ The other half of this app can be found at:
 * HTML
 * CSS
 * Axios
+* Pages
 
 ## Installation Instructions
 
@@ -90,10 +93,13 @@ You can submit an issue on the git repository detailing your suggestion.
 
 For the development of this app, we had a group of four and about 3.5 days to finish. We wanted to try a few different approaches that would allow us to work efficiently while still challenging us to be better developers. To include:
 
+* Task Management - we used a few different tools to help us track tasks pending/compeleted throughout the project. These included: word doc, Google doc, Slack, and Smartsheet.
+
+* Work hours - during class time (0900-1700) we would meet on camera and work. Typically, we'd have a meeting at the start of the day, after lunch, and at the end of the day to communicate progress and problems. There was never anything established for working outside of class time.
+
 * Pair programming - for the first half of the project, we split into pairs - one focusing on front-end, the other focusing on back-end.
 
-* Mob programming - when faced with difficult bugs or problems, we would consolidate into one group to solve the problem. This was the primary approach during the second half of the project timeeline.
+* Mob programming - when faced with difficult bugs or problems, we would consolidate into one group to solve the problem. This was the primary approach during the second half of the project timeline.
 
 * Tokens - we set rules for using tokens in order to mitigate excessive usage. If you can't solve something by yourself after about 15 min, get a partner to solve it. If two people can't solve it after 15 min, we all consolidate and try to figure it out with all four members. If it still is too difficult, we would use a token to get help.
 
-* Work hours - there was never anything established for coding outside of class time (0900-1700).
